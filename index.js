@@ -3,7 +3,21 @@
 $(document).ready(() => {
   const $body = $('body');//
   $body.html('');//clears the body
+  $body.css({
+    'background-color': '#DBF9FC',
+    'display': 'flex',
+    'flex-direction': 'column',
+    'align-items': 'center',
+    //'text-align': 'center',
+    //'padding-top': '20px'
 
+  });
+  const title = $('<h1>Twiddler X<h1>');
+  title.css({
+    'color': 'grey',
+    'margin-bottom': '20px'
+  });
+  $body.append(title);
   const $tweetsDiv = $('<div id=tweets>');//conatainer for holding tweet
   $body.append($tweetsDiv);// pushes tweets to the body
 
@@ -20,6 +34,12 @@ $(document).ready(() => {
       });
       $tweetsDiv.html('');//clear current tweets left
       $tweetsDiv.append($tweetsToShow);//append new tweets
+      $tweetsDiv.css({
+        'background-color': 'white',
+        'padding': '20px',
+        'border-radius': '5px',
+        'margin-top': '20px'
+      });
       //add username buton
       $('.username').on('click', function(event) {
         const user = $(this).data('user');
@@ -34,7 +54,7 @@ $(document).ready(() => {
     showTweets(); //first show of tweets
   }
   MakeNewTweets();
-
+  //adds timestamp to tweets
   function timestamp(time) {
     const currTime = new Date();//current time
     const tweetTime = new Date(time);//make tweets time into usable data
@@ -64,6 +84,7 @@ $(document).ready(() => {
     
     
   }
+  //shows users
   function userTimeline(username) {
     const userTweetsRec = streams.users[username];
     const $userTweetShown = userTweetsRec.map((tweet) => {
@@ -80,12 +101,12 @@ $(document).ready(() => {
 
   }
   function userTweet() {
-    const $tweetData = $('<input type = "text" placeholder="Enter your tweet">');
+    const $tweetData = $('<input type = "text" placeholder="tweet">');
     const $tweetButton = $('<button>Submit</button>');
 
     $body.append($tweetData);
     $body.append($tweetButton);
-
+    //tweet button for users tweets
     $tweetButton.on('click', () => {
       const tweetMessage = $tweetData.val().trim();
       if (tweetMessage !== '') {
