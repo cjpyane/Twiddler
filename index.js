@@ -1,4 +1,4 @@
-/* eslint-disable func-style */
+ /* eslint-disable func-style */
 
 $(document).ready(() => {
   const $body = $('body');//
@@ -134,6 +134,7 @@ $(document).ready(() => {
 
 });
 //timestamp();
+
 
 
 
